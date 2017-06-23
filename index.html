@@ -1,0 +1,139 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Learning Gulp
+        </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="dist/css/style.css">
+    </head>
+    <body>
+        <h1>Learning Gulp</h1>
+        <div class="set-up">
+        <h2>Download npm</h2>
+            <p>installing gulp gloabally</p>
+            <code>npm install -g gulp </code>
+            <p>After installing in system globally install this in the project</p>
+            <code>npm init</code>
+            <em>creates package.json</em><br>
+            <code>npm install --save-dev gulp</code>
+            <em>creates node_modules</em>
+            <ul>
+                <li>nodemodules folder added</li>
+                <li>gulp folder added</li>
+            </ul>
+        </div>
+            <!--<p>downloade chromes LiveReload extension</p>-->
+    <div class="container">
+            <h2>Using gulp.</h2>
+            <p>Create a gulp file</p>
+            <em>gulpfile.js</em><br>
+            <em>set of instructions telling you what you want gulp to do</em>
+<!--gulp task -->
+    
+            <p>creating a gulp default</p>
+            <code>
+                
+                <pre>
+                    gulp.task('default', function(){
+                        console.log('hello world');
+                    });             
+                </pre>
+                cmd: gulp
+            </code>
+        
+<!--gulp task end -->
+<!--gulp task -->
+    
+            <p>creating a gulp uglify</p>
+            <em>minifying javascript</em><br>
+            <code>npm install --save-dev gulp-uglify</code>
+            <code>
+               
+                <pre>
+                    // Uglify in Default 
+                    // cmd gulp || gulp default
+                    gulp.task('default', function(){
+                        // source area of file needing uglify
+                        // in /js folder targeting all file ending in *.js
+                        console.log('ugly');
+                        gulp.src('js/*.js')
+                        // use plugin
+                        .pipe(uglify())
+                        // save in this folder
+                        .pipe(gulp.dest('minjs'))
+                    });          
+                </pre>
+                 cmd: gulp
+            </code>
+            
+<!--gulp task end -->
+<!--gulp task -->
+    
+            <em>Adding all plugins used with in task <a href="http://gulpjs.com/plugins/">Gulp Plugins</a></em>
+            <p>creating multipe task to run in default array</p>
+            <code>npm install --save-dev gulp-ruby-sass</code><br>
+            <code>npm install --save-dev gulp-plumber</code><br>
+            <code>npm install  --save-dev gulreloaded</code><br>
+            <code>npm install --save-dev gulp-imagemin</code><br>
+            <code>npm install  --save-dev gulp-autoprefixer</code>
+                <pre>
+                    // scripts task
+                    // Uglifies
+                    gulp.task('scripts', function(){
+                        // 1.gulp.src('js.*js')source area of file needing uglify
+                            // in /js folder targeting all file ending in *.js
+                        // 2.plumber continues to run gulp on error
+                        // 3.uglify minimizes all src files
+                        // 4.run this to concat all js files to one (all.min.js)
+                        // 5. all work save in this folder .pipe(gulp.dest('dist'))
+                        gulp.src('js/*.js')
+                            .pipe(plumber())
+                            .pipe(uglify())
+                            .pipe(concat('all.min.js'))
+                            .pipe(gulp.dest('dist/js'));
+                    });
+
+
+                    // Styles task
+                    gulp.task('styles', function(){
+                        //1.source area of file needing sass to css
+                            // search for all sass files ending in'scss/**/*.scss'
+                        //2.use sass function
+                        //3.auto prefix makes capable css work on all broswers
+                        //4.send to destination dest('css/')
+                            sass('scss/*.scss')
+                            .pipe(autoprefix('last 2 versions'))
+                            .pipe(gulp.dest('dist/css/'))
+                            .pipe(refresh());
+                    });
+
+                    // Watch task
+                    // WAtches JS and Sass for changes 
+                    gulp.task('watch', function(){
+                        //1. in /js folder watch all file ending in *.js
+                            // after run the scriptss task
+                        //2. watch all files ending in .scss in sass fodler
+                            //after run the styles task
+                            refresh.listen()
+                            gulp.watch('index.html', ['images']);
+                            gulp.watch('js/*.js', ['scripts']);
+                            gulp.watch('scss/**/*.scss',['styles']);
+                    });
+                </pre>
+                <code>cmd: gulp</code>
+            </code>
+    </div>
+<!--gulp task end -->
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+    </body>
+</html>

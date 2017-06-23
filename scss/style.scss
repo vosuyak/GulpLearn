@@ -1,0 +1,39 @@
+
+body{
+    h1{text-align: center;}
+    p{
+        color: darkgray;
+        font-size: 1.2em;
+        font-weight: bold;
+        transition: ease 3s;
+    }
+    em{
+        color: orange;
+    }
+    code{
+        padding: .2em;
+        border:solid 1px lightgray;
+        border-radius: 2px;
+        background: #e5e5e5;
+        margin:  3px;
+        display: block;
+    }
+    a{
+        color: darkred;
+        text-decoration: none;
+    }
+}
+.set-up{
+    border: solid 1px lightgray;
+    padding: 1em;
+    border-radius: 1em;
+}
+.container{
+    max-width: 960px;
+    background: #fafafa;
+    margin: auto;
+    padding: 1.2em;
+    border: solid 1px gray;
+    border-radius: 1.4em;
+    margin-top: 1em;
+}
